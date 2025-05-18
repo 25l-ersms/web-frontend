@@ -1,103 +1,92 @@
+import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Data for the page content
+  const pageContent = {
+    welcomeText: "Welcome!",
+    subheading: "We connect you with your local Professionals in Home Repair",
+    callToAction: "Create Account or Login",
+    brandName: "HANDS4HIRE",
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="bg-[rgb(166,124,15)] flex w-full min-h-screen">
+
+        {/* Left panel with login */}
+        <div className="flex w-3/5 h-screen rounded-[0px_30px_30px_0px] [background:radial-gradient(50%_50%_at_62%_52%,rgba(0,0,0,0)_70%,rgba(0,0,0,0.2)_100%),linear-gradient(0deg,rgba(230,226,222,1)_0%,rgba(230,226,222,1)_100%)]">
+          {/* Welcome text section */}
+          <div className="flex w-full flex-col ml-[129px]">
+            <h1 className="w-[499px] mt-[111px] [font-family:'Syne-Bold',Helvetica] font-bold text-[#795a08] text-[44px] tracking-[-0.20px] leading-[66px]">
+              {pageContent.welcomeText}
+            </h1>
+
+            <div className=" w-2/3 mt-[48px] [font-family:'Syne-Bold',Helvetica] font-bold text-[#a67c0f] text-4xl tracking-[-0.20px] leading-[54px]">
+              <span className="tracking-[-0.07px]">
+                <br />
+              </span>
+              <span className="text-[32px] tracking-[-0.06px] leading-[48px]">
+                {pageContent.subheading}
+              </span>
+            </div>
+
+            <h2 className="w-full mt-20 [font-family:'Syne-Bold',Helvetica] font-bold text-[#d4a017] text-[40px] tracking-[-0.20px] leading-6">
+              {pageContent.callToAction}
+            </h2>
+
+            {/* Google login button */}
+            <Link href="/registration" passHref>
+            <Card className="w-[432px] h-[68px] mt-[56px] ml-[9px] bg-white rounded-[12.51px] shadow-[0px_22.94px_42.6px_#00000012] border-none">
+              <CardContent className="flex justify-center items-center">
+                {/* <div className="relative w-[30.03px] h-[30.03px] bg-white"> */}
+                  <Image
+                    className="flex justify-center w-[29px] h-[29px] top-px left-px mr-5"
+                    alt="Google logo"
+                    src="/images.jpg"
+                    width={29}
+                    height={29}
+                  />
+                {/* </div> */}
+                <span className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#0000008a] text-[25px] tracking-[0] leading-[normal]">
+                  Continue with Google
+                </span>
+              </CardContent>
+            </Card>
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+        {/* Right panel with branding and graphics */}
+        <div className=" relative h-screen w-2/5">
+
+          <div className="w-full  h-[137px] mt-10">
+               {/* Logo */}
+            <Image
+              className="absolute w-[219px] h-[137px] top-5 right-5"
+              alt="HANDS4HIRE Logo"
+              src="/logo_h4h.png"
+              width={219}
+              height={137}
+            />
+          </div>
+
+
+          {/* Brand name */}
+          <h2 className="flex justify-center items-center w-full h-[58px] [font-family:'Syne-ExtraBold',Helvetica] font-extrabold text-[#e3e3d6] text-6xl text-center tracking-[-0.20px] leading-[54px]">
+            {pageContent.brandName}
+          </h2>
+
+          {/* Tools graphic */}
+          <div className="absolute bottom-0 right-0 w-full h-3/5">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            alt="Hand tools graphic"
+            src="/hand_tools.png"
+            fill
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          </div>
+        </div>
+    </main>
   );
 }
