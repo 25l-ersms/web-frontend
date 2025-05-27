@@ -1,12 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { GoogleLogin } from '@react-oauth/google';
 
 
 export default function Home() {
-  // Data for the page content
+
   const pageContent = {
     welcomeText: "Welcome!",
     subheading: "We connect you with your local Professionals in Home Repair",
@@ -37,25 +35,7 @@ export default function Home() {
             <h2 className="w-full mb-10 mt-20 [font-family:'Syne-Bold',Helvetica] font-bold text-[#d4a017] text-[40px] tracking-[-0.20px] leading-6">
               {pageContent.callToAction}
             </h2>
-
-            {/* Google login button */}
-            {/* <Card className="w-[432px] h-[68px] mt-[56px] ml-[9px] bg-white rounded-[12.51px] shadow-[0px_22.94px_42.6px_#00000012] border-none">
-              <CardContent className="flex justify-center items-center"> */}
-                {/* <div className="relative w-[30.03px] h-[30.03px] bg-white"> */}
-                  {/* <Image
-                    className="flex justify-center w-[29px] h-[29px] top-px left-px mr-5"
-                    alt="Google logo"
-                    src="/images.jpg"
-                    width={29}
-                    height={29}
-                  /> */}
-                  <GoogleLogin width={1000}/>
-                {/* </div> */}
-                {/* <span className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#0000008a] text-[25px] tracking-[0] leading-[normal]">
-                  Continue with Google
-                </span> */}
-              {/* </CardContent>
-            </Card> */}
+              <GoogleLogin width={1000}/>
           </div>
         </div>
 

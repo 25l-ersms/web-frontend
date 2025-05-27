@@ -3,7 +3,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-
 import {
   Form,
   FormField,
@@ -17,9 +16,9 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { formTypes } from './page'
 
-// Zod schema stays the same
+
 const creditCardSchema = z.object({
 
   firstName: z.string().min(1, { message: 'First name is required' }),
@@ -34,8 +33,8 @@ const creditCardSchema = z.object({
   ),
 })
 
-export default function InputRegistrationForm() {
-  // No TypeScript generics here
+export default function InputRegistrationForm({data, setData, setFormType}) {
+
   const form = useForm({
     resolver: zodResolver(creditCardSchema),
     defaultValues: {
@@ -45,14 +44,13 @@ export default function InputRegistrationForm() {
     },
   })
 
-  const Router = useRouter()
-
-    const [selectedRole, setSelectedRole] = useState("customer");
+  const [selectedRole, setSelectedRole] = useState("customer");
 
   const onSubmit = (values) => {
-    // handle tokenization / submission…
+
+    setData(values)
     if (selectedRole === 'vendor') {
-      Router.push('/registration/fee')
+      setFormType(formTypes.fee);
     }
   }
 

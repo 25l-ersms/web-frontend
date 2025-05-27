@@ -3,7 +3,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-
 import {
   Form,
   FormField,
@@ -14,8 +13,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { formTypes } from './page'
 
-// Zod schema stays the same
 const creditCardSchema = z.object({
   cardNumber: z
     .string()
@@ -31,7 +30,7 @@ const creditCardSchema = z.object({
   name: z.string().min(1, { message: 'Cardholder name is required' }),
 })
 
-export default function CreditCardForm() {
+export default function CreditCardForm({data, setData, setFormType}) {
 
   const form = useForm({
     resolver: zodResolver(creditCardSchema),
@@ -44,7 +43,8 @@ export default function CreditCardForm() {
   })
 
   const onSubmit = (values) => {
-    // handle tokenization / submission…
+    setData({...data, ...values})
+    setFormType(formTypes.expertize);
     console.log('Got card data:', values)
   }
 

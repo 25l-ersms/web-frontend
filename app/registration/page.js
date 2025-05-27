@@ -4,8 +4,23 @@ import { Card } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
 import InputRegistrationForm from "./InputRegistrationForm";
+import ExpertizeForm from "./ExpertizeForm";
+import CreditCardForm from "./CreditCardForm";
+import { useState } from "react";
+
+  export const formTypes = {
+    registration: 0,
+    expertize: 1,
+    fee: 2
+  }
 
 export default function RegistrationForm()  {
+
+
+
+    const [formType, setFormType] = useState(formTypes.registration);
+    const [data, setData] = useState(null);
+
 
   return (
     <main className="bg-[rgb(166,124,15)] flex w-full min-h-screen">
@@ -20,7 +35,9 @@ export default function RegistrationForm()  {
           <p className=" [font-family:'Syne-Bold',Helvetica] font-bold text-[#a67c0f] text-[32px] tracking-[-0.20px] leading-[48px] mb-[5%]">
             We need a few more details to proceed...
           </p>
-            <InputRegistrationForm  />
+            {formType === formTypes.registration && <InputRegistrationForm data={data} setData={setData} setFormType={setFormType} />}
+            {formType === formTypes.expertize && <ExpertizeForm data={data} setData={setData} setFormType={setFormType} />}
+            {formType === formTypes.fee && <CreditCardForm data={data} setData={setData} setFormType={setFormType} />}
         </div>
       </Card>
 

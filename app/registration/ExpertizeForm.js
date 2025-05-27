@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import * as z from 'zod'
-
 import {
   Form,
   FormField,
@@ -17,7 +16,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 
-// Skill options extracted to constant for easier maintenance and potential reuse
+
 const SKILL_OPTIONS = [
   { value: 'javascript', label: 'JavaScript' },
   { value: 'python', label: 'Python' },
@@ -33,7 +32,7 @@ const addressFormSchema = z.object({
   skill: z.string().min(1, { message: 'Skill is required' }),
 })
 
-export default function ExpertizeForm () {
+export default function ExpertizeForm ({data, setData, setFormType}) {
   const form = useForm({
     resolver: zodResolver(addressFormSchema),
     defaultValues: Object.fromEntries(
@@ -41,10 +40,12 @@ export default function ExpertizeForm () {
     ),
   })
 
-  // useCallback can prevent unnecessary re-renders if passed to child components
-  const onSubmit = React.useCallback((data) => {
-    console.log('Form data:', data)
-  }, [])
+
+  const onSubmit = (values) => {
+    const allData = {...data, ...values}
+    setData(allData)
+    console.log('Form data:', allData)
+  }
 
   return (
     <Form {...form}>
@@ -67,7 +68,6 @@ export default function ExpertizeForm () {
             [&_label]:text-l
             [&_label]:tracking-[-0.20px]
           `}>
-        {/* Example of extracting repeated fields into a config-driven render map */}
         {[
           { name: 'streetAddress', label: 'Street Address', placeholder: '1234 Main St', cols: 'col-span-1' },
           { name: 'regionState', label: 'Region/State', placeholder: 'Region or State', cols: 'col-span-1' },
@@ -89,7 +89,7 @@ export default function ExpertizeForm () {
           />
         ))}
 
-        {/* Two-column layout for City & Postal Code */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {['city', 'postalCode'].map(name => (
             <FormField
@@ -108,7 +108,7 @@ export default function ExpertizeForm () {
             />
           ))}
         </div>
-        {/* Skill dropdown leveraging memoized options */}
+
         <FormField
           control={form.control}
           name="skill"
@@ -132,7 +132,7 @@ export default function ExpertizeForm () {
           )}
         />
 
-        {/* Submit Button with consistent sizing and no inline event handler */}
+
         <Button type="submit" className="w-full h-12 bg-yellow-500 text-white text-lg font-semibold hover:bg-yellow-600 transition-colors">
           Submit Form
         </Button>
