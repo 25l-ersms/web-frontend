@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { GoogleLogin } from '@react-oauth/google';
-
+import { signIn } from "@/auth";
 
 export default function Home() {
 
@@ -36,6 +36,14 @@ export default function Home() {
               {pageContent.callToAction}
             </h2>
               <GoogleLogin width={1000}/>
+              <form
+                action={async () => {
+                  "use server"
+                  await signIn("google", {redirectTo: "/registration"})
+                }}
+                >
+                  <button type='submit'>sign in</button>
+                </form>
           </div>
         </div>
 
