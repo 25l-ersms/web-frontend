@@ -21,7 +21,6 @@ export default function RegistrationForm()  {
     const [formType, setFormType] = useState(formTypes.registration);
     const [data, setData] = useState(null);
 
-
   return (
     <main className="bg-[rgb(166,124,15)] flex w-full min-h-screen">
 
