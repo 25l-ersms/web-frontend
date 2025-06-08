@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { GoogleLogin } from '@react-oauth/google';
+import ChatWindow from "@/components/ui/ChatWindow";
 
 
 export default function Home() {
@@ -68,6 +69,7 @@ export default function Home() {
           />
           </div>
         </div>
+        <ChatWindow />
     </main>
   );
 }
