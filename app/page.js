@@ -1,7 +1,11 @@
+// 'use client';
+
 import React from "react";
 import Image from "next/image";
 import { GoogleLogin } from '@react-oauth/google';
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
+import Cookies from "js-cookie";
+// import { cookies } from 'next/headers';
 
 export default function Home() {
 
@@ -35,11 +39,26 @@ export default function Home() {
             <h2 className="w-full mb-10 mt-20 [font-family:'Syne-Bold',Helvetica] font-bold text-[#d4a017] text-[40px] tracking-[-0.20px] leading-6">
               {pageContent.callToAction}
             </h2>
-              <GoogleLogin width={1000}/>
+              {/* <GoogleLogin onSuccess={(credentialResponse) => {
+                    const accessToken = credentialResponse.credential; // or credentialResponse.access_token
+              Cookies.set('google-access-token', accessToken, { expires: 7 }); // Set cookie for 7 days
+              console.log("Google Login Success:", credentialResponse);
+              } } width={1000}/> */}
               <form
                 action={async () => {
                   "use server"
-                  await signIn("google", {redirectTo: "/registration"})
+                      const token = await signIn("google", {redirect: true});
+                      console.log("Google Login Success:", typeof token);
+                      const session = await auth()
+                      console.log("Session:", session);
+                    //   await cookies().set({
+                    //     name: 'google-access-token',
+                    //     value: token?.accessToken,
+                    //     path: '/',
+                    //     httpOnly: true,
+                    //     maxAge: 60 * 60 * 24 * 7,
+                    // });
+                    // redirect('/registration');
                 }}
                 >
                   <button type='submit'>sign in</button>
