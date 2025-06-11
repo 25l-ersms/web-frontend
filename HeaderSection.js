@@ -10,10 +10,10 @@ import {
 export const HeaderSection = () => {
   // Navigation items data
   const navItems = [
-    { name: "Profile", active: true },
-    { name: "Search", active: false },
-    { name: "Visits History", active: false },
-    { name: "Chat", active: false },
+    { name: "Profile", active: true, redirection:'/customer' },
+    { name: "Search", active: false, redirection: '/customer/search' },
+    { name: "Visits History", active: false, redirection: '/' },
+    { name: "Chat", active: false, redirection: '/' },
   ];
 
   return (
@@ -33,7 +33,7 @@ export const HeaderSection = () => {
             {navItems.map((item) => (
               <NavigationMenuItem className="focus:shadow-md" key={item.name}>
 
-                  <NavigationMenuLink href='/'>
+                  <NavigationMenuLink href={item.redirection}>
                     <span
                       className={`[font-family:'Syne-SemiBold',Helvetica] font-semibold text-[#a67c0f] text-xl tracking-[-0.20px] leading-[30px]`}
                     >

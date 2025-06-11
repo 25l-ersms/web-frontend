@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
+'use client'
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { UserCircle } from "lucide-react";
 import React from "react";
 
-export default function ProfileSection() {
+export default function ProfileSection({profileData}) {
   // User data
-  const userData = {
-    username: "friedtoaster2000",
-    firstName: "friedtoaster2000",
-    lastName: "",
-    phoneNumber: "+XX XXX XXX XXX",
-  };
+//   const profileData = {
+//     username: "friedtoaster2000",
+//     firstName: "friedtoaster2000",
+//     lastName: "",
+//     phoneNumber: "+XX XXX XXX XXX",
+//   };
 
   return (
     <div className="flex max-h-screen flex-col gap-12 py-4 px-9 bg-[#fafaf8b2] rounded-[15px] w-full max-w-[505px]">
@@ -24,7 +24,7 @@ export default function ProfileSection() {
             <p className="font-bold text-[22px] text-[#45474a] font-['Syne-Bold',Helvetica] leading-6 ">
               Welcome&nbsp;&nbsp;back <br />
               <span className="text-[20px] ">
-                {userData.username}!
+                {profileData && profileData.first_name}!
               </span>
             </p>
           </div>
@@ -43,7 +43,7 @@ export default function ProfileSection() {
             </div>
             <Input
               className="h-[46px] rounded-lg border-[#45474a] bg-[#fafaf8] font-['Syne-Regular',Helvetica] text-xl text-[#66696d] tracking-[-0.20px] leading-6 px-3"
-              defaultValue={userData.firstName}
+              defaultValue={profileData && profileData.first_name}
             />
           </div>
 
@@ -56,27 +56,9 @@ export default function ProfileSection() {
             </div>
             <Input
               className="h-[46px] rounded-lg border-[#45474a] bg-[#fafaf8] font-['Syne-Regular',Helvetica] text-xl text-[#66696d] tracking-[-0.20px] leading-6 px-3"
-              defaultValue={userData.lastName}
+              defaultValue={profileData && profileData.last_name}
             />
           </div>
-
-          {/* Phone Number Field */}
-          <div className="relative w-full">
-            <div className="absolute -top-3 left-7 px-2 bg-[#fafaf8]">
-              <span className="font-['Syne-SemiBold',Helvetica] font-semibold text-xl text-[#45474a] tracking-[-0.20px] leading-6">
-                Phone Number
-              </span>
-            </div>
-            <Input
-              className="h-[46px] rounded-lg border-[#45474a] bg-[#fafaf8] font-['Syne-Regular',Helvetica] text-xl text-[#66696d] tracking-[-0.20px] leading-6 px-3"
-              defaultValue={userData.phoneNumber}
-            />
-          </div>
-
-          {/* Update Button */}
-          <Button className="w-[278px] h-[46px] bg-[#d4a017] hover:bg-[#c19015] rounded-lg font-['Syne-Bold',Helvetica] font-bold text-xl text-[#e3e3d6] tracking-[-0.20px]">
-            Update data
-          </Button>
         </CardContent>
       </Card>
     </div>
